@@ -1,0 +1,17 @@
+C:\D\CIB.Assessment\CIB.DataAccessEF\bin\Debug\net6.0\CIB.DataAccessEF.deps.json
+C:\D\CIB.Assessment\CIB.DataAccessEF\bin\Debug\net6.0\CIB.DataAccessEF.dll
+C:\D\CIB.Assessment\CIB.DataAccessEF\bin\Debug\net6.0\CIB.DataAccessEF.pdb
+C:\D\CIB.Assessment\CIB.DataAccessEF\obj\Debug\net6.0\CIB.DataAccessEF.csproj.AssemblyReference.cache
+C:\D\CIB.Assessment\CIB.DataAccessEF\obj\Debug\net6.0\CIB.DataAccessEF.GeneratedMSBuildEditorConfig.editorconfig
+C:\D\CIB.Assessment\CIB.DataAccessEF\obj\Debug\net6.0\CIB.DataAccessEF.AssemblyInfoInputs.cache
+C:\D\CIB.Assessment\CIB.DataAccessEF\obj\Debug\net6.0\CIB.DataAccessEF.AssemblyInfo.cs
+C:\D\CIB.Assessment\CIB.DataAccessEF\obj\Debug\net6.0\CIB.DataAccessEF.csproj.CoreCompileInputs.cache
+C:\D\CIB.Assessment\CIB.DataAccessEF\obj\Debug\net6.0\CIB.DataAccessEF.dll
+C:\D\CIB.Assessment\CIB.DataAccessEF\obj\Debug\net6.0\refint\CIB.DataAccessEF.dll
+C:\D\CIB.Assessment\CIB.DataAccessEF\obj\Debug\net6.0\CIB.DataAccessEF.pdb
+C:\D\CIB.Assessment\CIB.DataAccessEF\obj\Debug\net6.0\ref\CIB.DataAccessEF.dll
+C:\D\CIB.Assessment\CIB.DataAccessEF\bin\Debug\net6.0\CIB.Domain.dll
+C:\D\CIB.Assessment\CIB.DataAccessEF\bin\Debug\net6.0\CIB.Domain.pdb
+C:\D\CIB.Assessment\CIB.DataAccessEF\obj\Debug\net6.0\CIB.DataAccessEF.csproj.CopyComplete
+C:\D\CIB.Assessment\CIB.DataAccessEF\bin\Debug\net6.0\CIB.DataAccessEF.runtimeconfig.json
+C:\D\CIB.Assessment\CIB.DataAccessEF\obj\Debug\net6.0\CIB.DataAccessEF.genruntimeconfig.cache

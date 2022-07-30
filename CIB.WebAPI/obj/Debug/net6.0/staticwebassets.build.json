@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Ql7yVMV0AwhR6Onca6qjT38XECLGaqqcurM5ZRt8MOo=",
+  "Source": "CIB.WebAPI",
+  "BasePath": "_content/CIB.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

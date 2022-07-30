@@ -1,0 +1,12 @@
+C:\D\CIB.Assessment\CIB.Domain\bin\Debug\net6.0\CIB.Domain.deps.json
+C:\D\CIB.Assessment\CIB.Domain\bin\Debug\net6.0\CIB.Domain.dll
+C:\D\CIB.Assessment\CIB.Domain\bin\Debug\net6.0\CIB.Domain.pdb
+C:\D\CIB.Assessment\CIB.Domain\obj\Debug\net6.0\CIB.Domain.csproj.AssemblyReference.cache
+C:\D\CIB.Assessment\CIB.Domain\obj\Debug\net6.0\CIB.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\D\CIB.Assessment\CIB.Domain\obj\Debug\net6.0\CIB.Domain.AssemblyInfoInputs.cache
+C:\D\CIB.Assessment\CIB.Domain\obj\Debug\net6.0\CIB.Domain.AssemblyInfo.cs
+C:\D\CIB.Assessment\CIB.Domain\obj\Debug\net6.0\CIB.Domain.csproj.CoreCompileInputs.cache
+C:\D\CIB.Assessment\CIB.Domain\obj\Debug\net6.0\CIB.Domain.dll
+C:\D\CIB.Assessment\CIB.Domain\obj\Debug\net6.0\refint\CIB.Domain.dll
+C:\D\CIB.Assessment\CIB.Domain\obj\Debug\net6.0\CIB.Domain.pdb
+C:\D\CIB.Assessment\CIB.Domain\obj\Debug\net6.0\ref\CIB.Domain.dll

@@ -1,0 +1,287 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Phone Book
+        </div>
+        <div class="form-group" style="padding: 12px">
+            <label for="PhoneBookName">Phone Book Name:</label>
+            <input id="txtPhoneBookName" maxlength="50" class="form-control mr-12" placeholder="Enter Phone Book Name">
+        </div>
+        <div class="card">
+
+            <div class="card-header">
+                Entry
+            </div>
+
+            <div class="form-group" style="padding: 12px">
+                <label for="EntryName">Entry Name:</label>
+                <input id="txtEntryName" maxlength="50" class="form-control mr-12" placeholder="Enter Phone Entry Name">
+            </div>
+            <div class="form-group" style="padding: 12px">
+                <label for="PhoneNumber">Phone Number:</label>
+                <input id="txtPhoneNumber" maxlength="20" class="form-control mr-12" placeholder="Enter Phone Number">
+            </div>
+            <div class="form-inline" style="padding: 12px">
+                <button class="btn btn-success" id="addEntries" onclick="addEntries()">Add Entries</button>
+                <button class="btn btn-warning" id="resetEntries" onclick="resetEntries();">Reset</button>
+            </div>
+            <hr />
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-brand col-sm-6">
+                        Entries
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <table id="entryTable" class="table table-bordered table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Entry Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="form-inline" style="padding: 9px">
+        <button class="btn btn-success" id="savePhoneBook" onclick="savePhoneBook();">Save</button>
+        <button class="btn btn-warning" id="reset" onclick="resetSave();">Reset</button>
+    </div>
+
+    <div class="form-inline" style="padding: 9px"></div>
+    <table id="phoneBookList" class="table table-striped table-bordered" style="width: 100%;display: none">
+        <thead>
+            <tr>
+                <th>Phone Book Name</th>
+                <th>Entry Name</th>
+                <th>Phone Number</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+<script>
+
+    function addEntries() {
+
+        var entryName = $.trim($("#txtEntryName").val());
+        var phoneNumber = $.trim($("#txtPhoneNumber").val());
+
+        if (entryName == '') {
+            alert('Kindly enter Phone Book Entry Name to save.');
+            $("#txtEntryName").focus();
+            return
+        }
+
+        if (phoneNumber == '') {
+            alert('Kindly enter Phone Number to save.');
+            $("#txtPhoneNumber").focus();
+            return
+        }
+
+        if ($("#entryTable tbody").length == 0) {
+            $("#entryTable").append("<tbody></tbody>");
+        }
+        // Append product to the table
+        $("#entryTable tbody").append(
+            "<tr>" +
+            "<td>" + $("#txtEntryName").val() + "</td>" +
+            "<td>" + $("#txtPhoneNumber").val() + "</td>" +
+            "<td>" +
+            "<button type='button' onclick = 'entryDelete(this);' class='btn btn-danger btn-sm' data-toggle='tooltip' data-placement='top' title='Delete'><i class='bi bi-trash'></i></button>" +
+            "</td>" +
+            "</tr>");
+
+        $("#txtEntryName").val("");
+        $("#txtPhoneNumber").val("");
+
+        $("#txtEntryName").focus();
+    }
+
+    function entryDelete(ctl) {
+        $(ctl).parents("tr").remove();
+    }
+
+    function resetEntries() {
+        $("#txtEntryName").val("");
+        $("#txtPhoneNumber").val("");
+
+        $("#txtEntryName").focus();
+    }
+
+    function resetSave() {
+        $("#txtPhoneBookName").val("");
+        $("#txtEntryName").val("");
+        $("#txtPhoneNumber").val("");
+        $("#entryTable tr").remove();
+
+        $("#txtPhoneBookName").focus();
+    }
+
+    function savePhoneBook() {
+        var phoneBookName = $.trim($("#txtPhoneBookName").val());
+
+        if (phoneBookName == '') {
+            alert('Kindly enter Phone Book Name to save.');
+            $("#txtPhoneBookName").focus();
+            return;
+        }
+
+        item = {}
+        item["PhoneBookName"] = phoneBookName;
+
+        var TableData = new Array();
+
+        $('#entryTable tr').each(function(row, tr) {
+            TableData[row] = {
+                "EntryId": 0,
+                "EntryName": $(tr).find('td:eq(0)').text(),
+                "PhoneNumber": $(tr).find('td:eq(1)').text()
+            }//tableData[row]
+        });
+        TableData.shift(); // first row will be empty - so remove
+        item["Entires"] = TableData;
+
+
+        var r = confirm("Do you want to save this phone book?");
+        if (r == true) {
+            WaitForInProgress();
+
+            $.ajax({
+                url: 'https://localhost:7233/PhoneBook',
+                type: "POST",
+                data: JSON.stringify(item),
+                contentType: "application/json",
+                success: function(d) {
+                    WaitForEndProgress();
+                    loadPhoneBook();
+                    alert('Phone Book saved successfully.');
+                },
+                error: function(request, message, error) {
+                    WaitForEndProgress();
+                    handleException(request, message, error);
+                }
+            });
+        }
+        $('#phoneBookList').show();
+
+        $("#txtPhoneBookName").val("");
+        $("#txtEntryName").val("");
+        $("#txtPhoneNumber").val("");
+
+        $("#entryTable tr").remove();
+
+
+        $("#txtPhoneBookName").focus();
+    }
+
+    function WaitForInProgress() {
+        $.blockUI({
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .5,
+                color: '#fff'
+            }
+        });
+    }
+
+    function WaitForEndProgress() {
+        window.setTimeout(function() { $.unblockUI(); }, 500);
+    }
+
+    function handleException(request, message, error) {
+        var msg = "";
+        msg += "Code: " + request.status + "\n";
+        msg += "Text: " + request.statusText + "\n";
+        if (request.responseJSON != null) {
+            msg += "Message" + request.responseJSON.Message + "\n";
+        }
+        alert(msg);
+    }
+
+    function loadPhoneBook() {
+        //alert('Loading');
+
+        $('#phoneBookList').show();
+        WaitForInProgress();
+        var oTable = $('#phoneBookList').DataTable({
+            rowGroup: {
+                dataSrc: 'entires'
+            },
+            fixedheader: true,
+            "processing": false, // for show progress bar
+            "bDestroy": true,
+            "lengthChange": false,
+            "ajax": {
+                "url": 'https://localhost:7233/PhoneBook',                
+                "type": "GET",
+                "datatype": "json",
+                "dataSrc": ""
+            },
+            "columnDefs":
+                [
+                    {
+                        "targets": [0],
+                        "searchable": true,
+                        "orderable": true
+                    },
+                    {
+                        "targets": [1],
+                        "searchable": true,
+                        "orderable": true
+                    },
+                    {
+                        "targets": [2],
+                        "searchable": true,
+                        "orderable": true
+                    }],
+
+            "columns": [
+                { "data": "phoneBookName", "name": "PhoneBookName", "autoWidth": true },
+                { "data": "entryName", "name": "EntryName", "autoWidth": true },
+                { "data": "phoneNumber", "name": "PhoneNumber", "autoWidth": true }
+            ],
+
+            "initComplete": function(settings, json) {
+                WaitForEndProgress();
+            }
+
+        });
+
+
+    }
+
+    $(document).ready(function() {
+        loadPhoneBook();
+    });
+
+</script>
